@@ -1,4 +1,4 @@
-﻿namespace APIology.ServiceProvider.AspNetCore
+﻿namespace APIology.ServiceProvider
 {
 	using Autofac;
 	using Autofac.Extensions.DependencyInjection;
