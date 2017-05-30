@@ -1,24 +1,25 @@
-﻿namespace APIology.Runner.AspNetCore
+﻿namespace APIology.ServiceProvider.AspNetCore
 {
-	using Runner.Core;
 	using Autofac;
-	using System.Diagnostics.CodeAnalysis;
+	using Autofac.Extensions.DependencyInjection;
+	using Configuration;
 	using Topshelf;
 	using Microsoft.AspNetCore.Hosting;
 	using Microsoft.AspNetCore.Hosting.Server.Features;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.Extensions.Logging;
-	using Autofac.Extensions.DependencyInjection;
-	using System;
 	using Serilog;
+	using System;
+	using System.Diagnostics.CodeAnalysis;
 	using System.Linq;
 	using System.IO;
+	using APIology.ServiceProvider.Core;
 
 	[SuppressMessage("ReSharper", "MemberCanBeProtected.Global")]
-	public abstract class ServiceBase<TAPIBase, TConfiguration> : ServiceBase<TConfiguration>
-		where TAPIBase : ServiceBase<TConfiguration>
-		where TConfiguration : Configuration, new()
+	public abstract class AspNetCoreServiceProvider<TAPIBase, TConfiguration> : BaseServiceProvider<TConfiguration>
+		where TAPIBase : BaseServiceProvider<TConfiguration>
+		where TConfiguration : AspNetCoreConfiguration, new()
 	{
 		private IWebHost _instance;
 		public IHostingEnvironment Environment { get; private set; }
@@ -45,7 +46,7 @@
 
 		public class Startup
 		{
-			internal static ServiceBase<TAPIBase, TConfiguration> Service;
+			internal static AspNetCoreServiceProvider<TAPIBase, TConfiguration> Service;
 			private ILifetimeScope Scope { get; set; }
 
 			public Startup(IHostingEnvironment env)
@@ -60,11 +61,7 @@
 
 				Scope = Service.LazyContainer.Value.BeginLifetimeScope(builder => {
 					builder.Populate(services);
-
 					Service.BuildAspNetCoreDependencySubcontainer(builder);
-					/* builder.RegisterType<SerilogLoggerProvider>()
-						.As<ILoggerProvider>()
-						.SingleInstance(); */
 				});
 
 				return new AutofacServiceProvider(Scope);

@@ -1,13 +1,12 @@
-﻿namespace APIology.Runner.AspNetCore
+﻿namespace APIology.ServiceProvider.Configuration
 {
 	using Newtonsoft.Json;
-	using Runner.Configuration;
 	// using Security.X509;
 	using System;
 	using System.Collections.Generic;
 	using System.Security.Cryptography.X509Certificates;
 
-	public class Configuration : ServiceConfiguration
+	public class AspNetCoreConfiguration : BaseServiceConfiguration
 	{
 		public BindingConfiguration[] Bindings { get; set; }
 

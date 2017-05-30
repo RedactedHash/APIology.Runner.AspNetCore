@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\APIology.Runner\APIology.Runner.csproj" />
+    <ProjectReference Include="..\APIology.ServiceProvider\APIology.ServiceProvider.csproj" />
   </ItemGroup>
 
 </Project>
