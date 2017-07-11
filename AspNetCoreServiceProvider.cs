@@ -4,10 +4,10 @@
 	using Autofac.Extensions.DependencyInjection;
 	using Configuration;
 	using Topshelf;
+	using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.Hosting;
 	using Microsoft.AspNetCore.Hosting.Server.Features;
 	using Microsoft.Extensions.DependencyInjection;
-	using Microsoft.AspNetCore.Builder;
 	using Microsoft.Extensions.Logging;
 	using Serilog;
 	using System;
@@ -34,7 +34,7 @@
 
 			_instance = new WebHostBuilder()
 				.UseKestrel()
-				.UseContentRoot(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\.."))
+				.UseContentRoot(Directory.GetCurrentDirectory())
 				.UseStartup<Startup>()
 				.Start(Config.Bindings.Select(bc => bc.BoundUri).ToArray());
 
@@ -47,30 +47,30 @@
 		public class Startup
 		{
 			internal static AspNetCoreServiceProvider<TAPIBase, TConfiguration> Service;
-			private ILifetimeScope Scope { get; set; }
+			private static ILifetimeScope Container { get; set; }
 
 			public Startup(IHostingEnvironment env)
 			{
-				EnvironmentName = env.EnvironmentName;
 			}
 
 			public IServiceProvider ConfigureServices(IServiceCollection services)
 			{
-				services.AddLogging();
 				Service.ConfigureAspNetCore(services);
+				services.AddLogging();
 
-				Scope = Service.LazyContainer.Value.BeginLifetimeScope(builder => {
-					builder.Populate(services);
-					Service.BuildAspNetCoreDependencySubcontainer(builder);
-				});
+				var builder = new ContainerBuilder();
+				builder.Populate(services);
+				Service.BuildAspNetCoreDependencySubcontainer(builder);
 
-				return new AutofacServiceProvider(Scope);
+				Container = builder.Build();
+
+				return new AutofacServiceProvider(Container);
 			}
 
 			public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime appLifetime)
 			{
 				Service.BuildAspNetCoreApp(app, env);
-				appLifetime.ApplicationStopped.Register(() => Scope.Dispose());
+				appLifetime.ApplicationStopped.Register(() => Container.Dispose());
 			}
 		}
 
