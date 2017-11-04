@@ -3,7 +3,9 @@ image: Visual Studio 2017
 build_script:
 - ps: >-
     dotnet restore
+
     dotnet build
+
     dotnet pack
 artifacts:
 - path: bin/Debug/APIology.ServiceProvider.AspNetCore.*.nupkg
