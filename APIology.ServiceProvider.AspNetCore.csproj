@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="APIology.ServiceProvider" Version="1.0.6" />
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="[4.0.0,4.2.0)" />
-    <PackageReference Include="Serilog.Extensions.Logging" Version="[1.0.0,1.4.0)" />
+    <PackageReference Include="APIology.ServiceProvider" Version="[1.0.6,2.0.0)" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="[4.0.0,4.2.0]" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="[1.0.0,1.4.0]" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net452' or '$(TargetFramework)'=='net461'">
