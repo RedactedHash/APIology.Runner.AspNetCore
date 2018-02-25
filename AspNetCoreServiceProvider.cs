@@ -1,4 +1,5 @@
-﻿namespace APIology.ServiceProvider
+﻿// ReSharper disable once CheckNamespace
+namespace APIology.ServiceProvider
 {
 	using Autofac;
 	using Autofac.Extensions.DependencyInjection;
@@ -14,7 +15,7 @@
 	using System.Diagnostics.CodeAnalysis;
 	using System.Linq;
 	using System.IO;
-	using APIology.ServiceProvider.Core;
+	using Core;
 
 	[SuppressMessage("ReSharper", "MemberCanBeProtected.Global")]
 	public abstract class AspNetCoreServiceProvider<TAPIBase, TConfiguration> : BaseServiceProvider<TConfiguration>

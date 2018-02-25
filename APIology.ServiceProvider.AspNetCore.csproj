@@ -7,9 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="APIology.ServiceProvider" Version="[1.0.7,2.0.0)" />
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="[4.0.0,4.2.0]" />
-    <PackageReference Include="Serilog.Extensions.Logging" Version="[1.0.0,1.4.0]" />
+    <PackageReference Include="APIology.ServiceProvider" Version="1.0.8" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net452'">
+    <PackageReference Include="NETStandard.Library" Version="1.6.1" />
+    <PackageReference Include="Topshelf" Version="4.0.2" />
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetFramework)'=='net461'">
+    <PackageReference Include="NETStandard.Library" Version="2.0.1" />
+    <PackageReference Include="Topshelf" Version="[4.0.0,4.0.3]" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net452' or '$(TargetFramework)'=='net461'">
@@ -21,6 +29,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Https" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
   </ItemGroup>
+
   <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.0.1" />
@@ -29,8 +38,16 @@
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Https" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
+    <PackageReference Include="Topshelf" Version="4.1.0.117-develop" />
   </ItemGroup>
+
   <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp2.0'">
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Topshelf" Version="4.1.0.117-develop" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="[4.0.0,4.2.0]" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="[1.0.0,1.4.0]" />
   </ItemGroup>
 </Project>
