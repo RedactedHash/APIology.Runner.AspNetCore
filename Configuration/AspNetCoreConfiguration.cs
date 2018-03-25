@@ -8,6 +8,7 @@
 
 	public class AspNetCoreConfiguration : BaseServiceConfiguration
 	{
+		[JsonProperty("ASPNETCORE_URLS")]
 		public BindingConfiguration[] Bindings { get; set; }
 
 		// public List<CertificateIdentifier> ClientWhitelist { get; set; }
