@@ -3,13 +3,27 @@
 	using Newtonsoft.Json;
 	// using Security.X509;
 	using System;
-	using System.Collections.Generic;
-	using System.Security.Cryptography.X509Certificates;
+	using System.Linq;
+	// using System.Collections.Generic;
+	// using System.Security.Cryptography.X509Certificates;
 
 	public class AspNetCoreConfiguration : BaseServiceConfiguration
 	{
 		[JsonProperty("ASPNETCORE_URLS")]
-		public BindingConfiguration[] Bindings { get; set; }
+		public string DotnetCoreEnvironmentUrls
+		{
+			set
+			{
+				if (string.IsNullOrWhiteSpace(value))
+					return;
+
+				Bindings = value.Split(System.IO.Path.PathSeparator)
+					.Select(url => new BindingConfiguration { UrlAcl = url })
+					.ToArray();
+			}
+		}
+
+		public BindingConfiguration[] Bindings { get; set; } = { };
 
 		// public List<CertificateIdentifier> ClientWhitelist { get; set; }
 	}
