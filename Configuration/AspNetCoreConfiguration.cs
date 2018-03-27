@@ -16,7 +16,7 @@
 		{
 			get
 			{
-				return string.Join(Path.PathSeparator.ToString(),
+				return string.Join(";",
 					Bindings.Select(val => val.BoundUri).ToArray()
 				);
 			}
@@ -25,7 +25,7 @@
 				if (string.IsNullOrWhiteSpace(value))
 					return;
 
-				Bindings = value.Split(Path.PathSeparator)
+				Bindings = value.Split(';', ',')
 					.Select(url => new BindingConfiguration { UrlAcl = url })
 					.ToArray();
 			}
@@ -49,8 +49,6 @@
 			}
 			set {
 				_urlAcl = value;
-
-				Console.WriteLine("Set ASPNETCORE_URLS {0}", value);
 				Builder = new UriBuilder(Url);
 			}
 		}
