@@ -10,8 +10,8 @@
 
 	public class AspNetCoreConfiguration : BaseServiceConfiguration
 	{
-		[JsonProperty("ASPNETCORE_URLS")]
-		public string DotnetCoreEnvironmentUrls
+		[JsonIgnore]
+		public string AspNetCore_Urls
 		{
 			get
 			{
