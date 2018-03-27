@@ -3,6 +3,7 @@
 	using Newtonsoft.Json;
 	// using Security.X509;
 	using System;
+	using System.IO;
 	using System.Linq;
 	// using System.Collections.Generic;
 	// using System.Security.Cryptography.X509Certificates;
@@ -12,12 +13,18 @@
 		[JsonProperty("ASPNETCORE_URLS")]
 		public string DotnetCoreEnvironmentUrls
 		{
+			get
+			{
+				return string.Join(Path.PathSeparator.ToString(),
+					Bindings.Select(val => val.ToString()).ToArray()
+				);
+			}
 			set
 			{
 				if (string.IsNullOrWhiteSpace(value))
 					return;
 
-				Bindings = value.Split(System.IO.Path.PathSeparator)
+				Bindings = value.Split(Path.PathSeparator)
 					.Select(url => new BindingConfiguration { UrlAcl = url })
 					.ToArray();
 			}
