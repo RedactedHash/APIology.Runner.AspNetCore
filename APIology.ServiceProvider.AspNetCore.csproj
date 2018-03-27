@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="APIology.ServiceProvider" Version="1.0.8" />
+    <PackageReference Include="APIology.ServiceProvider" Version="[1.0.8,)" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net452'">
@@ -43,11 +43,11 @@
 
   <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp2.0'">
     <PackageReference Include="Microsoft.AspNetCore.All" Version="[2.0.5,)" />
-    <PackageReference Include="Topshelf" Version="4.1.0.117-develop" />
+    <PackageReference Include="Topshelf" Version="[4.1.0.117-develop,)" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="[4.0.0,4.2.0]" />
-    <PackageReference Include="Serilog.Extensions.Logging" Version="[1.0.0,1.4.0]" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="[4.0.0,]" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="[1.0.0,]" />
   </ItemGroup>
 </Project>
