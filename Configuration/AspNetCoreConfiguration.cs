@@ -11,7 +11,7 @@
 	public class AspNetCoreConfiguration : BaseServiceConfiguration
 	{
 		[JsonIgnore]
-		public string AspNetCore_Urls
+		public string ASPNETCORE_URLS
 		{
 			get
 			{
