@@ -42,7 +42,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp2.0'">
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="[2.0.5,)" />
     <PackageReference Include="Topshelf" Version="4.1.0.117-develop" />
   </ItemGroup>
 
