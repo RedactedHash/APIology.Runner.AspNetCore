@@ -25,6 +25,8 @@
 				if (string.IsNullOrWhiteSpace(value))
 					return;
 
+				Service.Logger.Debug("Set ASPNETCORE_URLS {0}", value);
+
 				Bindings = value.Split(Path.PathSeparator)
 					.Select(url => new BindingConfiguration { UrlAcl = url })
 					.ToArray();
