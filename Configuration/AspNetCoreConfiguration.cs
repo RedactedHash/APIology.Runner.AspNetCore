@@ -10,15 +10,9 @@
 
 	public class AspNetCoreConfiguration : BaseServiceConfiguration
 	{
-		[JsonIgnore]
+		// ReSharper disable once InconsistentNaming
 		public string ASPNETCORE_URLS
 		{
-			get
-			{
-				return string.Join(Path.PathSeparator.ToString(),
-					Bindings.Select(val => val.ToString()).ToArray()
-				);
-			}
 			set
 			{
 				if (string.IsNullOrWhiteSpace(value))
