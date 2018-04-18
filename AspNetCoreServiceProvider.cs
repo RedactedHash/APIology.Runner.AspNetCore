@@ -11,7 +11,6 @@ namespace APIology.ServiceProvider
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Logging;
 	using Serilog;
-	using Serilog.AspNetCore;
 	using System;
 	using System.Diagnostics.CodeAnalysis;
 	using System.Linq;
@@ -38,7 +37,9 @@ namespace APIology.ServiceProvider
 				.UseKestrel()
 				.UseContentRoot(Directory.GetCurrentDirectory())
 				.UseStartup<Startup>()
+#if NETCORE
 				.UseSerilog()
+#endif
 				.Start(Config.Bindings.Select(bc => bc.BoundUri).ToArray());
 
 			var registeredAddress = _instance.ServerFeatures.Get<IServerAddressesFeature>();

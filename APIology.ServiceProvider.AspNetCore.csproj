@@ -32,6 +32,10 @@
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
   </ItemGroup>
 
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0' || '$(TargetFramework)'=='netcoreapp2.0'">
+    <DefineConstants>NETCORE</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.0.1" />
