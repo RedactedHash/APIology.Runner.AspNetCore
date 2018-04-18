@@ -11,6 +11,7 @@ namespace APIology.ServiceProvider
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Logging;
 	using Serilog;
+	using Serilog.AspNetCore;
 	using System;
 	using System.Diagnostics.CodeAnalysis;
 	using System.Linq;
