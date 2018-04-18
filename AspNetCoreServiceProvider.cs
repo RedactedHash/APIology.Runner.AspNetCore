@@ -37,6 +37,7 @@ namespace APIology.ServiceProvider
 				.UseKestrel()
 				.UseContentRoot(Directory.GetCurrentDirectory())
 				.UseStartup<Startup>()
+				.UseSerilog()
 				.Start(Config.Bindings.Select(bc => bc.BoundUri).ToArray());
 
 			var registeredAddress = _instance.ServerFeatures.Get<IServerAddressesFeature>();
